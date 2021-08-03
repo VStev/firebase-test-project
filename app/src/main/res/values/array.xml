@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="classes">
+        <item>Pyromancer</item>
+        <item>Cryomancer</item>
+        <item>Time Mage</item>
+        <item>Miko</item>
+        <item>Samurai</item>
+        <item>Warrior</item>
+        <item>Archer</item>
+        <item>Ranger</item>
+        <item>Berserker</item>
+        <item>Weapon Master</item>
+        <item>Magi</item>
+        <item>Technologist</item>
+        <item>Magical Beast Hunter</item>
+    </string-array>
+
+    <string-array name="race">
+        <item>Human Nord</item>
+        <item>Human Imperial</item>
+        <item>Human Breton</item>
+        <item>Human Redguard</item>
+        <item>Human Ancient</item>
+        <item>Elf</item>
+        <item>Dark Elf</item>
+        <item>High Elf</item>
+        <item>Snow Elf</item>
+        <item>Wood Elf</item>
+        <item>Argonian</item>
+        <item>Khajiit</item>
+        <item>Werewolf</item>
+        <item>Vampire</item>
+    </string-array>
+
+    <string-array name="nationality">
+        <item>Cyrodiilian</item>
+        <item>Skyrim</item>
+        <item>Hammerfell</item>
+        <item>Altmer</item>
+        <item>Bosmer</item>
+        <item>Vvardenfell</item>
+        <item>Elsweyr</item>
+        <item>Black Marsh</item>
+        <item>Orzecan</item>
+        <item>Vahlmaelkan</item>
+    </string-array>
+
+</resources>
