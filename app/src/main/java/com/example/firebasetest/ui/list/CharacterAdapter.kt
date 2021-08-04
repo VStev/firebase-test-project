@@ -2,10 +2,8 @@ package com.example.firebasetest.ui.list
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.firebasetest.R
 import com.example.firebasetest.adapters.FirestoreAdapter
 import com.example.firebasetest.databinding.ItemsBinding
 import com.example.firebasetest.model.Character
@@ -16,7 +14,6 @@ import com.google.firebase.firestore.ktx.toObject
 open class CharacterAdapter(query: Query) : FirestoreAdapter<CharacterAdapter.CardViewHolder>(query) {
 
     inner class CardViewHolder(private val items: ItemsBinding) : RecyclerView.ViewHolder(items.root) {
-//        private val binding = ItemsBinding.bind(itemView)
         fun bind(data: DocumentSnapshot) {
             val char = data.toObject<Character>()
             Log.d("bind:", "$char")
