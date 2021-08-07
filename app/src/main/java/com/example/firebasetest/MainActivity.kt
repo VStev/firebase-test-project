@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun signIn(){
+        //TODO if authentication is not banned then admit else nope
         val email = binding.tbEmailSignIn.text.toString()
         val password = binding.tbPasswordSignIn.text.toString()
         auth.signInWithEmailAndPassword(email, password)

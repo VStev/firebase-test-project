@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class CharacterListFragment : Fragment() {
 
@@ -51,7 +52,8 @@ class CharacterListFragment : Fragment() {
         fireDB = Firebase.firestore
         val q = fireDB.collection("Characters")
 //            .orderBy("charName", Query.Direction.ASCENDING)
-        characterAdapter = object : CharacterAdapter(q){
+        val reference = Firebase.storage.reference
+        characterAdapter = object : CharacterAdapter(q, reference){
             override fun onDataChanged() {
                 super.onDataChanged()
                 if (itemCount == 0){

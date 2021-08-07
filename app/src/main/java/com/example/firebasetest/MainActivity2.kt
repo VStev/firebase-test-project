@@ -50,9 +50,12 @@ class MainActivity2 : AppCompatActivity() {
             Toast.makeText(this, "AUTHENTICATION FAILED", Toast.LENGTH_LONG).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        }/*else{
-            navView.findViewById<TextView>(R.id.textView).text = logged.email
-        }*/
+        }else{
+            val emailTxt = navView.getHeaderView(0).findViewById<TextView>(R.id.email_text)
+            val usernameTxt = navView.getHeaderView(0).findViewById<TextView>(R.id.username)
+            usernameTxt.text = logged.displayName
+            emailTxt.text = logged.email
+        }
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }

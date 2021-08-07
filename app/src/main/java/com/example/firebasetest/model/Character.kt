@@ -6,7 +6,8 @@ data class Character(
     val charClass: String,
     val charNational: String,
     val detail: String,
-    val owner: String
+    val owner: String,
+    val picture: String
 ){
     constructor(): this(
         "Kasumi",
@@ -14,6 +15,7 @@ data class Character(
         "Miko",
         "Orzecan",
         "Default Character Miko",
-        "10879795"
+        "10879795",
+        "108Kas-001"
     )
 }

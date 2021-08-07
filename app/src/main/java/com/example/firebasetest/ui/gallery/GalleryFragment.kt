@@ -64,6 +64,7 @@ class GalleryFragment : Fragment() {
         }
         binding.txtUniqueId.text = user.uid
         binding.txtEmail.text = user.email
+        binding.txtDisplayName.text = user.displayName
         galleryViewModel.displayName.observe(viewLifecycleOwner, {
             binding.txtDisplayName.text = it
         })
