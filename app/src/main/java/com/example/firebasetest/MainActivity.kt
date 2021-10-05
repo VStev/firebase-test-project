@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
+    private var retries = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,13 +65,15 @@ class MainActivity : AppCompatActivity() {
             clearTextBoxes()
             binding.signIn.visibility = View.VISIBLE
             binding.signUp.visibility = View.GONE
-//            binding.signedIn.visibility = View.GONE
+            binding.forgotPassword.visibility = View.GONE
         }
         binding.btnDontHaveAccount.setOnClickListener{
             clearTextBoxes()
             binding.signIn.visibility = View.GONE
             binding.signUp.visibility = View.VISIBLE
-//            binding.signedIn.visibility = View.GONE
+            binding.btnForgotPassword.visibility = View.GONE
+            retries = 0
+            binding.forgotPassword.visibility = View.GONE
         }
         binding.btnSignIn.setOnClickListener {
             signIn()
@@ -78,8 +81,13 @@ class MainActivity : AppCompatActivity() {
         binding.btnSignUp.setOnClickListener {
             signUp()
         }
-        binding.btnSignOut.setOnClickListener {
-            signOut()
+        binding.btnForgotPassword.setOnClickListener {
+            binding.signIn.visibility = View.GONE
+            binding.signUp.visibility = View.GONE
+            binding.forgotPassword.visibility = View.VISIBLE
+        }
+        binding.btnResetPassword.setOnClickListener {
+            forgotPassword()
         }
         Log.d("TAG", "LISTENER SET FINISH!")
     }
@@ -98,6 +106,10 @@ class MainActivity : AppCompatActivity() {
         //TODO if authentication is not banned then admit else nope
         val email = binding.tbEmailSignIn.text.toString()
         val password = binding.tbPasswordSignIn.text.toString()
+        Log.d("TAG", "signIn: $retries")
+        if (retries > 2){
+            binding.btnForgotPassword.visibility = View.VISIBLE
+        }
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
@@ -111,13 +123,9 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
                     clearTextBoxes()
+                    retries += 1
                 }
             }
-    }
-
-    private fun signOut(){
-        auth.signOut()
-        updateUI(null)
     }
 
     private fun signUp(){
@@ -138,5 +146,17 @@ class MainActivity : AppCompatActivity() {
                     updateUI(null)
                 }
             }
+    }
+
+    private fun forgotPassword(){
+        val email = binding.tbEmailReset.text.toString()
+        if (email != ""){
+            auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener {
+                    Toast.makeText(baseContext, "email sent! Check your email for reset link", Toast.LENGTH_SHORT).show()
+                }
+        }else{
+            Toast.makeText(baseContext, "Email cannot be empty", Toast.LENGTH_SHORT).show()
+        }
     }
 }
